@@ -1,1 +1,20 @@
-<p>list works!</p>
+<h2 class="mt-5 mb-4">Cadastros de usuário</h2>
+
+<table class="table">
+    <thead>
+      <tr >
+        <th scope="col">Nome</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Data de nascimento</th>
+        <th scope="col">Escolaridade</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let i of listaUsuarios">
+            <td scope="col">{{i.nome + " " + i.sobrenome}}</td>
+            <td scope="col">{{i.email}}</td>
+            <td scope="col">{{i.dataNascimento | date: 'dd/MM/yyyy'}}</td>
+            <td scope="col">{{ i.escolaridade | enumToArray}}</td>
+          </tr>
+        </tbody>
+  </table>

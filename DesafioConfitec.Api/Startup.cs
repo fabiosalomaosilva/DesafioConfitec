@@ -24,6 +24,7 @@ namespace DesafioConfitec.Api
             services.AddMvc().AddFluentValidation();
             services.AddContainerDependencyInjection(Configuration);
             services.AddControllers();
+            services.AddCors();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DesafioConfitec.Api", Version = "v1" });
@@ -39,6 +40,10 @@ namespace DesafioConfitec.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DesafioConfitec.Api v1"));
             }
+            app.UseCors(x => x
+               .AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
