@@ -1,1 +1,53 @@
-<p>edit works!</p>
+<h2 class="mt-5 mb-4">Editar usuário</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="nome">Nome</label>
+        <input class="form-control" type="text" name="nome" id="nome" placeholder="Nome do usuário" formControlName="nome" required
+        [ngClass]="{ 'is-invalid': submitted && f['nome'].errors }" >
+        <div *ngIf="submitted && f['nome'].errors" class="invalid-feedback">
+            <div *ngIf="f['nome'].errors['required']">O campo Nome é obrigatório</div>
+          </div>
+    </div>
+    <div class="form-group">
+        <label>Sobrenome</label>
+        <input type="text" formControlName="sobrenome" class="form-control" 
+        [ngClass]="{ 'is-invalid': submitted && f['sobrenome'].errors }" />
+        <div *ngIf="(submitted  && f['sobrenome'].errors)" class="invalid-feedback">
+            <div *ngIf="f['sobrenome'].errors['required']">O campo Sobrenome é obrigatório</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="text" formControlName="email" class="form-control" 
+        [ngClass]="{ 'is-invalid': submitted  && f['email'].errors }" />
+        <div *ngIf="(submitted && f['email'].errors)" class="invalid-feedback">
+            <div *ngIf="f['email'].errors['required']">O campo E-mail é obrigatório</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Data de nascimento</label>
+        <input type="text" formControlName="dataNascimento" class="form-control" 
+        [ngClass]="{ 'is-invalid': submitted  && f['dataNascimento'].errors }" />
+        <div *ngIf="(submitted && f['dataNascimento'].errors)" class="invalid-feedback">
+            <div *ngIf="f['dataNascimento'].errors['required']">O campo Data de nascimento é obrigatório</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Escolaridade</label>
+        <select formControlName="escolaridade" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['escolaridade'].errors }" >
+            <option value="1">Infantil</option>
+            <option value="2">Fundamental</option>
+            <option value="3">Médio</option>
+            <option value="4">Superior</option>
+        </select>
+          <div *ngIf="(submitted && f['escolaridade'].errors)" class="invalid-feedback">
+            <div *ngIf="f['escolaridade'].errors['required']">O campo Escolaridade é obrigatório</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a routerLink="/"  class="btn btn-warning" class="ml-3">Cancelar</a>
+    </div>
+</form>

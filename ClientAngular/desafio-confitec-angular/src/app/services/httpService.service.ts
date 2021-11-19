@@ -16,8 +16,8 @@ export class HttpService<T> {
     return this.http.get<T[]>(this.baseUri).pipe(take(1));
   }
 
-  getByID(id: string) {
-    return this.http.get<T>(this.baseUri + id).pipe(take(1));
+  getByID(id: number) {
+    return this.http.get<T>(this.baseUri + "/" + id).pipe(take(1));
   }
 
   add(obj: T) {
@@ -28,7 +28,7 @@ export class HttpService<T> {
     return this.http.put(this.baseUri, obj).pipe(take(1));
   }
 
-  delete(id: string) {
-    return this.http.delete(this.baseUri + id).pipe(take(1));
+  delete(id: number) {
+    return this.http.delete(this.baseUri + "/" + id).pipe(take(1));
   }  
 }

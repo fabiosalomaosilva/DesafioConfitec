@@ -8,6 +8,7 @@ import { AddComponent } from './pages/usuarios/add/add.component';
 import { EditComponent } from './pages/usuarios/edit/edit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EnumToArrayPipe } from './pipes/EnumToArrayPipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,8 @@ import { EnumToArrayPipe } from './pipes/EnumToArrayPipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [],

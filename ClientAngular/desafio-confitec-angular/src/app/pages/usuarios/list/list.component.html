@@ -1,12 +1,15 @@
 <h2 class="mt-5 mb-4">Cadastros de usuário</h2>
 
-<table class="table">
+<button  class="btn btn-primary m-3 mb-2" (click)="add()">Adicionar usuário</button>
+<button  class="btn btn-info m-3 mb-2" (click)="getAll()">Atualizar</button>
+<table class="table mt-2">
     <thead>
       <tr >
         <th scope="col">Nome</th>
         <th scope="col">E-mail</th>
         <th scope="col">Data de nascimento</th>
         <th scope="col">Escolaridade</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -15,6 +18,10 @@
             <td scope="col">{{i.email}}</td>
             <td scope="col">{{i.dataNascimento | date: 'dd/MM/yyyy'}}</td>
             <td scope="col">{{ i.escolaridade | enumToArray}}</td>
-          </tr>
+            <td scope="col">
+                <button  class="btn btn-secondary btn-sm" style="min-width: 60px!important;padding: 1px;margin-right: 10px;" (click)="edit(i)">Editar</button>
+                <button  class="btn btn-danger btn-sm" style="min-width: 60px!important;padding: 1px;" (click)="delete(i)">Excluir</button>
+            </td>
+         </tr>
         </tbody>
   </table>

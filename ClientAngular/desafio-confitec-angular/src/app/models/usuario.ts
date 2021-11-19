@@ -1,9 +1,8 @@
 export interface Usuario {
-  id: number;
+  id?: number;
   nome: string;
   sobrenome: string;
   email: string;
   dataNascimento: Date;
   escolaridade: number;
 }
-
