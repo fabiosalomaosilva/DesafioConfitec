@@ -40,9 +40,17 @@ export class AddComponent implements OnInit {
   async onSubmit() {
     this.submitted = true;
     console.log(this.form.controls);
+
     if (this.form.invalid) {
       return;
     }
+    const aniversario = new Date(this.form.value.dataNascimento);
+    const dataAtual = new Date(); 
+    if(aniversario > dataAtual) {
+      alert('Data de nascimento maior que a data atual')
+      return;
+    }
+    
     const usuario: Usuario = {
       nome: this.form.value.nome,
       sobrenome: this.form.value.sobrenome,
