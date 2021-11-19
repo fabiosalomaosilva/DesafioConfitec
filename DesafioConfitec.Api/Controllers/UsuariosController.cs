@@ -49,7 +49,7 @@ namespace DesafioConfitec.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(UsuarioDto obj)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {
@@ -67,14 +67,21 @@ namespace DesafioConfitec.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> Put(UsuarioDto obj)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return Ok(await _usuarioService.EditAsync(obj));
+                try
+                {
+                    //var register = await _usuarioService.GetAsync(obj.Id);
+                    //if (register == null) return BadRequest("Registro não encontrado com o Id informado");
+
+                    return Ok(await _usuarioService.EditAsync(obj));
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
             }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return BadRequest(new BadRequestObjectResult(ModelState));
         }
 
         // DELETE api/<UsuariosController>/5
@@ -83,6 +90,9 @@ namespace DesafioConfitec.Api.Controllers
         {
             try
             {
+                var register = await _usuarioService.GetAsync(id);
+                if (register == null) return BadRequest("Registro não encontrado com o Id informado");
+
                 await _usuarioService.DeleteAsync(id);
                 return Ok("Registro excluído");
             }
